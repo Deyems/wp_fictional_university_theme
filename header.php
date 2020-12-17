@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html <?php language_attributes(); ?>>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="<?php bloginfo('charset') ?>" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- <title>Blog in WP</title> -->
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i" rel="stylesheet" /> -->
-    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" /> -->
     <?php wp_head() ?>
   </head>
   
-  <body>
+  <body <?php body_class(); ?>>
     <header class="site-header">
       <div class="container">
         <h1 class="school-logo-text float-left">
@@ -19,8 +17,17 @@
         <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
         <div class="site-header__menu group">
           <nav class="main-navigation">
+            <?php
+              /* 
+              wp_nav_menu([
+                'theme_location' => 'headerMenuLocation'
+              ]);
+              */
+            ?>
             <ul>
-              <li><a href="<?php echo site_url('/about-us') ?>">About Us</a></li>
+              <li <?php if(is_page('about-us') || wp_get_post_parent_id(0) == 13) echo 'class="current-menu-item"'; ?>>
+                <a href="<?php echo site_url('/about-us') ?>">About Us</a>
+              </li>
               <li><a href="#">Programs</a></li>
               <li><a href="#">Events</a></li>
               <li><a href="#">Campuses</a></li>
