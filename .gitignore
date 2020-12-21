@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+plugins/advanced-custom-fields
+twentytwenty
+twentyseventeen
+twentynineteen
+uploads
+#themes/fictional-university-theme/node_modules/
