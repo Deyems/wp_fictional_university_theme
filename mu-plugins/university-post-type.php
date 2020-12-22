@@ -25,3 +25,4 @@ function university_post_types(){
 }
 
 add_action('init', 'university_post_types');
+
