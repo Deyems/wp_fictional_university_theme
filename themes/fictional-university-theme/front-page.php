@@ -19,7 +19,7 @@
             $today = date('Ymd');
             $args = [
               'post_type' => 'event',
-              'posts_per_page' => 10,
+              'posts_per_page' => '2',
               'orderby' => 'meta_value_num',
               'meta_key' => 'event_date',
               'order' =>  'ASC',
@@ -78,6 +78,7 @@
             <?php
               $homepagePosts = new WP_Query([
                 'post_type' => 'post',
+                'posts_per_page' => '2',
               ]);
               while($homepagePosts->have_posts()):
                 $homepagePosts->the_post();
