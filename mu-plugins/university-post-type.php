@@ -28,7 +28,7 @@ function university_post_types(){
     register_post_type('program', [
         'public' => true,
         'show_in_rest' => true,
-        'support' => 'editor, title',
+        'supports' => ['editor', 'title'],
         'has_archive' => true,
         'rewrite' => [
             'slug' => 'programs',
@@ -47,11 +47,7 @@ function university_post_types(){
     register_post_type('professor', [
         'public' => true,
         'show_in_rest' => true,
-        'support' => 'editor, title',
-        'has_archive' => true,
-        'rewrite' => [
-            'slug' => 'professors',
-        ],
+        'supports' => ['editor', 'title', 'thumbnail'],
         'labels' => [
             'name' => 'Professors',
             'add_new_item' => 'Add New Professor',
