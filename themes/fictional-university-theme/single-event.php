@@ -32,6 +32,26 @@
         <div class="generic-content">
             <?php the_content(); ?>
         </div>
+
+        
+        <?php 
+            //Pick Up Related Programs Linked with Events
+            $relatedPrograms = get_field('related_programs');
+        ?>
+        <?php if($relatedPrograms): ?>
+            <hr class="section-break">
+            <h1 class="headline headline--medium">Related Program(s)</h1>
+            <ul class="link-list min-list">
+        <?php
+            foreach($relatedPrograms as $program){
+        ?>
+            <li><a href="<?php echo get_the_permalink($program); ?>"><?php echo get_the_title($program); ?></a></li> 
+        <?php
+            }
+        ?>
+        
+        </ul>
+        <?php endif; ?>
     </div>
 <?php
     endwhile;
