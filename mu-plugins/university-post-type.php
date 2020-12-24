@@ -1,6 +1,7 @@
 <?php
 
 function university_post_types(){
+    //Event Post type
     register_post_type('event', [
         'public' => true,
         'has_archive' => true,
@@ -22,7 +23,8 @@ function university_post_types(){
         ],
         'menu_icon' => 'dashicons-calendar-alt',
     ]);
-
+    
+    //Program post type
     register_post_type('program', [
         'public' => true,
         'show_in_rest' => true,
@@ -39,6 +41,25 @@ function university_post_types(){
             'singular_name' => 'Program',
         ],
         'menu_icon' => 'dashicons-edit-large',
+    ]);
+    
+    //Register Progessor Post type
+    register_post_type('professor', [
+        'public' => true,
+        'show_in_rest' => true,
+        'support' => 'editor, title',
+        'has_archive' => true,
+        'rewrite' => [
+            'slug' => 'professors',
+        ],
+        'labels' => [
+            'name' => 'Professors',
+            'add_new_item' => 'Add New Professor',
+            'edit_item' => 'Edit Professor',
+            'all_items' => 'All Professors',
+            'singular_name' => 'Professor',
+        ],
+        'menu_icon' => 'dashicons-welcome-learn-more',
     ]);
 
 }
