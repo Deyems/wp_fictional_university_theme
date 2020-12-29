@@ -3,8 +3,6 @@
 function university_files(){
     wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
     wp_enqueue_style('font_awesome_style', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
-    // wp_enqueue_style('main_university_style', get_stylesheet_uri());
-    // wp_enqueue_script('main-university-js', get_theme_file_uri('/js/scripts-bundled.js'), NULL,'1.0', true);
     //Replacement for above files is implemented below - Use of Webpack to load all static files
     if(strstr($_SERVER['SERVER_NAME'], 'localhost')){
         wp_enqueue_script('main-university-js', 'http://localhost:3000/bundled.js', NULL,'1.0', true);
@@ -51,14 +49,13 @@ function university_adjust_queries($query){
             ]
         ]);
     }
-    
 }
 
 add_action('pre_get_posts', 'university_adjust_queries');
 ?>
 
 <?php
-    function pageBanner($args = NULL){
+    function pageBanner(array $args = NULL){
         if(!$args['title']){
             $args['title'] = get_the_title();
         }
@@ -76,14 +73,7 @@ add_action('pre_get_posts', 'university_adjust_queries');
     <div class="page-banner">
         <div class="page-banner__bg-image" style="background-image: url(
             <?php 
-                // $bannerImg = get_field('page_banner_background_image');
-                // if(!$bannerImg){
-                //     echo get_theme_file_uri('images/ocean.jpg');
-                // }else{
-                //     echo $bannerImg['sizes']['pageBanner'];
-                // }
                 echo $args['photo'];
-
             ?>) ">
         </div>
         <div class="page-banner__content container container--narrow">
@@ -95,3 +85,10 @@ add_action('pre_get_posts', 'university_adjust_queries');
     </div>
 <?php 
 }
+
+function universityMapKey(array $api){
+    $api['key'] = "AIzaSyCc6j8riL0L_1O_otOp3if6pxvQoq_EI78";
+    return $api;
+}
+
+add_filter('acf/fields/google_map/api', 'universityMapKey');
