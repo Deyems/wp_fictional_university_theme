@@ -42,8 +42,23 @@
                 ?>
             </ul>
         <?php endif; ?>
+        <?php
+            endwhile;
+            $relatedCampus = get_field('related_campus');
+            // var_dump($relatedCampus);
+            if($relatedCampus){
+                echo "<h1 class='headline headline--medium'>".  'Holds on this campus(es)'. "</h1>";
+                echo "<ul>";
+                foreach($relatedCampus as $campus){ ?>
+                    <li>
+                        <a href="<?php echo get_the_permalink($campus); ?>"> 
+                        <?php echo get_the_title($campus) ?> </a>
+                    </li>
+                <?php }
+                echo "</ul>";
+            }
+            ?>
     </div>
-<?php
-    endwhile;
-    get_footer();
-?>
+    <?php
+        get_footer();
+    ?>
