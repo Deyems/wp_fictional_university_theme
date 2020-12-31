@@ -71,6 +71,44 @@
             }
             echo "</ul>";
             wp_reset_postdata();
+            //Make a query to Pull out the related Events
+            $today = date('Ymd');
+            $args3 = [
+                'post_type' => 'event',
+                'posts_per_page' => '-1',
+                'orderby' => 'title',
+                'order' =>  'ASC',
+                'meta_key' => 'event_date',
+                'meta_query' => [
+                    [
+                        'key' => 'related_campus',
+                        'compare' => 'LIKE',
+                        'value' => '"'. get_the_ID() .'"',
+                    ],
+                    [
+                        'key' => 'event_date',
+                        'value' => $today,
+                        'compare' => '>=',
+                        'type' => 'numeric',
+                      ],
+                ],
+            ];
+            $relatedEvents = new WP_Query($args3);
+            if($relatedEvents->have_posts()){
+                echo '<hr class="section-break">
+                <h1 class="headline headline--medium">'.'Events holding on this Campus</h1>';
+                echo "<ul class='min-list list-link'>";
+                while($relatedEvents->have_posts()){
+                    $relatedEvents->the_post();
+                    ?>
+                    <li>
+                        <a href="<?php the_permalink(); ?>">
+                            <?php the_title(); ?>
+                        </a>
+                    </li>
+                <?php
+                }
+            }
         ?>
     </div>
 
