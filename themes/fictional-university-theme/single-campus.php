@@ -107,6 +107,8 @@
                         </a>
                     </li>
                 <?php
+                echo "</ul>";
+                wp_reset_postdata();
                 }
             }
         ?>
