@@ -27,9 +27,6 @@
                 wp_reset_postdata();
             ?>
         </div>
-        <div>
-            <?php echo paginate_links(); ?>
-        </div>
     </div>
 <?php get_footer();
 ?>
