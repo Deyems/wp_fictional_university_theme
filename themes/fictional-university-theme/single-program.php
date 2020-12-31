@@ -21,14 +21,12 @@
         <?php the_content(); ?>
       </div>
       <?php
-        endwhile;
-      ?>
-
-      <?php
+          endwhile;
+          // Show Upcoming Events related to this Program
           $today = date('Ymd');
           $args = [
             'post_type' => 'event',
-            'posts_per_page' => '2',
+            'posts_per_page' => '-1',
             'orderby' => 'meta_value_num',
             'meta_key' => 'event_date',
             'order' =>  'ASC',
@@ -60,7 +58,8 @@
         ?>
             
         <?php
-          $args = [
+        // Show Professors taking this Program as selected in the Admin
+          $args2 = [
             'post_type' => 'professor',
             'posts_per_page' => '-1',
             'orderby' => 'title',
@@ -73,7 +72,7 @@
               ],
             ]
           ];
-          $relatedProfessor = new WP_Query($args);
+          $relatedProfessor = new WP_Query($args2);
 
           if($relatedProfessor->have_posts()){
             echo '<hr class="section-break">
@@ -84,18 +83,33 @@
             $relatedProfessor->the_post();
         ?>
             
-            <li class="professor-card__listitem">
-              <a class="professor-card" href="<?php the_permalink(); ?>">
-                <img class="professor-card__image" src="<?php the_post_thumbnail_url('professorLandscape'); ?>" alt="">
-                <span class="professor-card__name"><?php the_title(); ?></span>
-              </a>
-            </li>
+          <li class="professor-card__listitem">
+            <a class="professor-card" href="<?php the_permalink(); ?>">
+              <img class="professor-card__image" src="<?php the_post_thumbnail_url('professorLandscape'); ?>" alt="">
+              <span class="professor-card__name"><?php the_title(); ?></span>
+            </a>
+          </li>
         <?php
           }
             echo "</ul>";
             wp_reset_postdata();
+
+            $relatedCampuses = get_field('related_campus');
+            var_dump($relatedCampuses);
+            if($relatedCampuses){
+              echo "<hr class='section-break'>";
+              echo "<ul>";
+              echo '<h2 class="headline headline--medium">'. get_the_title() .' is available at these campuses </h2>';
+              foreach($relatedCampuses as $campus){
+              ?>
+                <li><a href="<?php echo get_the_permalink($campus) ?>"><?php echo get_the_title($campus); ?></a></li> 
+              <?php
+              }
+              echo "</ul>";
+            }
         ?>
     </div>
+    
 
     
 <?php
