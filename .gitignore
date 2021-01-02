@@ -6,4 +6,7 @@ twentytwenty
 twentyseventeen
 twentynineteen
 uploads
+vendor
+.env
+googlekey
 #themes/fictional-university-theme/node_modules/
