@@ -57,10 +57,11 @@ class Search{
         let url = "http://localhost:10008/wp-json/wp/v2/posts?search="+ this.searchField.val();
         $.getJSON(url, results => {
             this.resultsDiv.html(`
-            <h2 class="search-overlay__section-title">General Information</h2>
-            <ul class="link-list min-list">
-            ${results.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
-            </ul>`);
+                <h2 class="search-overlay__section-title">General Information</h2>
+                ${results.length ? '<ul class="link-list min-list">' : '<p>No results match was found</p>'}
+                ${results.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
+                ${results.length ? '</ul>' : ''}
+            `);
         });
         // <li><a href="${results[0].link}">${results[0].title.rendered}</a></li>
         this.isSpinnerVisible = false;
