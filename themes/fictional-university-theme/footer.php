@@ -12,16 +12,11 @@
         <div class="site-footer__col-two">
           <h3 class="headline headline--small">Explore</h3>
           <nav class="nav-list">
-            <?php 
-              // wp_nav_menu([
-              //   'theme_location' => 'footerLocationOne'
-              // ]);
-            ?>
             <ul>
               <li><a href="<?php echo site_url('/about-us') ?>">About Us</a></li>
-              <li><a href="#">Programs</a></li>
-              <li><a href="#">Events</a></li>
-              <li><a href="#">Campuses</a></li>
+              <li><a href="<?php echo site_url('/program') ?>">Programs</a></li>
+              <li><a href="<?php echo site_url('/events') ?>">Events</a></li>
+              <li><a href="<?php echo site_url('/campus') ?>">Campuses</a></li>
             </ul>
           </nav>
         </div>
@@ -29,11 +24,6 @@
         <div class="site-footer__col-three">
           <h3 class="headline headline--small">Learn</h3>
           <nav class="nav-list">
-            <?php 
-              // wp_nav_menu([
-              //   'theme_location' => 'footerTwoLocation'
-              // ]);
-            ?>
             <ul>
               <li><a href="#">Legal</a></li>
               <li><a href="<?php echo site_url('/privacy-policy') ?>">Privacy</a></li>
@@ -68,21 +58,7 @@
     </div>
   </div>
 </footer>
-<div class="search-overlay">
-  <div class="search-overlay__top">
-    <div class="container">
-      <i class="fa fa-search search-overlay__icon" aria-hidden="true"></i>
-      <input type="text" class="search-term" placeholder="Enter what you are looking for?" id="search-item">
-      <i class="fa fa-window-close search-overlay__close" aria-hidden="true"></i>
-    </div>
-  </div>
-  
-  <div class="container">
-    <div class="search-overlay__results">
-    </div>
-  </div>
 
-</div>
 
 <?php wp_footer(); ?>
 </body>
