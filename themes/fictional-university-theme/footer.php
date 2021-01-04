@@ -79,7 +79,6 @@
   
   <div class="container">
     <div class="search-overlay__results">
-      Hello Here
     </div>
   </div>
 
