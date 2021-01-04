@@ -16,13 +16,6 @@
         <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
         <div class="site-header__menu group">
           <nav class="main-navigation">
-            <?php
-              /* 
-              wp_nav_menu([
-                'theme_location' => 'headerMenuLocation'
-              ]);
-              */
-            ?>
             <ul>
               <li <?php if(is_page('about-us') || wp_get_post_parent_id(0) == 13) echo 'class="current-menu-item"'; ?>>
                 <a href="<?php echo site_url('/about-us'); ?>">About Us</a>
@@ -50,5 +43,4 @@
           </div>
         </div>
       </div>
-      <!-- Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repudiandae molestias aspernatur laborum minus atque vel architecto. -->
     </header>
