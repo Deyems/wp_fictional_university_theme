@@ -48,6 +48,9 @@ class Search{
     }
 
     getResults(){
+        //UniversityData object is created by extending PHP WP
+        //The Javascript file is enqueued and then localized so as to
+        // add objects to the script
         let url = universityData.root_url + "/wp-json/wp/v2/posts?search="+ this.searchField.val();
         let url2 = universityData.root_url + "/wp-json/wp/v2/pages?search="+ this.searchField.val();
         
@@ -58,7 +61,7 @@ class Search{
             this.resultsDiv.html(`
                 <h2 class="search-overlay__section-title">General Information</h2>
                 ${combined.length ? '<ul class="link-list min-list">' : '<p>No results match was found</p>'}
-                ${combined.map(item => `<li><a href="${item.link}">${item.title.rendered}</a></li>`).join('')}
+                ${combined.map(item => `<li><a href="${item.link}">${item.title.rendered}</a> ${item.type== 'posts' ? `by ${item.author_name}` : ''}</li>`).join('')}
                 ${combined.length ? '</ul>' : ''}
             `)
         },() => {
