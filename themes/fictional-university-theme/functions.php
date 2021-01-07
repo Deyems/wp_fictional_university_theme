@@ -1,4 +1,5 @@
 <?php
+require get_theme_file_path('inc/search-route.php');
 
 function university_files(){
     wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
