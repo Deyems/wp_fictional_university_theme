@@ -18,7 +18,7 @@
         </p>
       </div>
       <div class="generic-content">
-        <?php the_content(); ?>
+        <?php echo get_field('main_body_content'); ?>
       </div>
       <?php
           endwhile;
@@ -44,17 +44,17 @@
               ]
             ]
           ];
-            $programEvents = new WP_Query($args);
+          $programEvents = new WP_Query($args);
 
-            if($programEvents->have_posts()){
-              echo '<hr class="section-break">
-              <h1 class="headline headline--medium">Upcoming '. get_the_title() .' Events</h1>';
-            }
-            while ( $programEvents->have_posts() ) {
-              $programEvents->the_post();
-              get_template_part('template-parts/content-event');
-            }
-            wp_reset_postdata();
+          if($programEvents->have_posts()){
+            echo '<hr class="section-break">
+            <h1 class="headline headline--medium">Upcoming '. get_the_title() .' Events</h1>';
+          }
+          while ( $programEvents->have_posts() ) {
+            $programEvents->the_post();
+            get_template_part('template-parts/content-event');
+          }
+          wp_reset_postdata();
         ?>
             
         <?php
@@ -95,7 +95,6 @@
             wp_reset_postdata();
 
             $relatedCampuses = get_field('related_campus');
-            var_dump($relatedCampuses);
             if($relatedCampuses){
               echo "<hr class='section-break'>";
               echo "<ul>";
