@@ -1,11 +1,10 @@
 <?php
   get_header();
   pageBanner([
-      'title' => 'All Events',
-      'subtitle' => 'Our Events are listed below:',
+    'title' => 'All Events',
+    'subtitle' => 'Our Events are listed below:',
   ]);
 ?>
-    
     <div class="container container--narrow page-section">
         <?php
             while(have_posts()):
