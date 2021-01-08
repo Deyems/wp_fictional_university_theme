@@ -1,11 +1,20 @@
 <?php
 require get_theme_file_path('inc/search-route.php');
 
+$filepath = dirname(dirname(dirname(__DIR__))).'/wp-config.php';
+
+if(!file_exists($filepath)){
+    echo "You need to add a key to this $filepath file";
+}else{
+    require "$filepath";
+}
+exit;
+
 function university_files(){
     wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
     wp_enqueue_style('font_awesome_style', '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-    wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key=AIzaSyCc6j8riL0L_1O_otOp3if6pxvQoq_EI78', NULL,'1.0', true);
+    wp_enqueue_script('googleMap', '//maps.googleapis.com/maps/api/js?key='.GOOGLE_MAP_API_KEY, NULL,'1.0', true);
 
     //Replacement for above files is implemented below - Use of Webpack to load all static files
     if(strstr($_SERVER['SERVER_NAME'], 'localhost')){
@@ -107,7 +116,7 @@ add_action('rest_api_init', 'university_custom_rest');
 }
 
 function universityMapKey(array $api){
-    $api['key'] = "AIzaSyCc6j8riL0L_1O_otOp3if6pxvQoq_EI78";
+    $api['key'] = GOOGLE_MAP_API_KEY;
     return $api;
 }
 
