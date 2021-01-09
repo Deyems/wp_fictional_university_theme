@@ -20,8 +20,8 @@ function university_files(){
         wp_enqueue_script('main-university-js', 'http://localhost:3000/bundled.js', NULL,'1.0', true);
     }else{
         wp_enqueue_script('our-vendors-js', get_theme_file_uri('/bundled-assets/vendors~scripts.9678b4003190d41dd438.js'), NULL,'1.0', true);
-        wp_enqueue_script('main-university-js', get_theme_file_uri('/bundled-assets/scripts.c9a9dee4c33a898804cf.js'), NULL,'1.0', true);
-        wp_enqueue_style('our-main-styles', get_theme_file_uri('/bundled-assets/styles.c9a9dee4c33a898804cf.css'));
+        wp_enqueue_script('main-university-js', get_theme_file_uri('/bundled-assets/scripts.a7a1e97c9faf818bddf2.js'), NULL,'1.0', true);
+        wp_enqueue_style('our-main-styles', get_theme_file_uri('/bundled-assets/styles.a7a1e97c9faf818bddf2.css'));
     }
     wp_localize_script('main-university-js', 'universityData', [
         'root_url' => get_site_url(),
@@ -120,3 +120,48 @@ function universityMapKey(array $api){
 }
 
 add_filter('acf/fields/google_map/api', 'universityMapKey');
+
+add_action('admin_init', 'redirectSubsToFrontPage');
+define('ROLE_TO_CHECK','subscriber');
+
+//Redirect Subscribers to HomePage
+
+function redirectSubsToFrontPage(){
+    $current_user_sub = wp_get_current_user();
+    if(count($current_user_sub->roles) == 1 &&
+    $current_user_sub->roles[0] == ROLE_TO_CHECK
+    ){
+        wp_redirect(site_url('/'));
+        exit;
+    }
+}
+
+add_action('wp_loaded', 'removeAdminBar');
+
+//Remove The Admin Bar at the TOP
+function removeAdminBar(){
+    $current_user_sub = wp_get_current_user();
+    if(count($current_user_sub->roles) == 1 &&
+    $current_user_sub->roles[0] == ROLE_TO_CHECK
+    ){
+        show_admin_bar(false);
+    }
+}
+
+add_filter('login_headerurl', 'my_header_url');
+
+function my_header_url(){
+    return esc_url(site_url('/'));
+}
+
+add_action('login_enqueue_scripts', 'our_login_css');
+
+function our_login_css(){
+    wp_enqueue_style('google_fonts', '//fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i|Roboto:100,300,400,400i,700,700i');
+    wp_enqueue_style('our-main-styles', get_theme_file_uri('/bundled-assets/styles.a7a1e97c9faf818bddf2.css'));
+}
+
+function my_login_logo_url_title() {
+    return get_bloginfo('name');
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
