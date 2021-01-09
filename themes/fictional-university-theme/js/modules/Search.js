@@ -129,6 +129,7 @@ class Search{
         this.searchField.val('');
         setTimeout(() => this.searchField.focus(), 302);
         this.isOverLayOpen = true;
+        return false;
     }
     
     closeOverlay(){
