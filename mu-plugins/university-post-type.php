@@ -3,6 +3,8 @@
 function university_post_types(){
     //Event Post type
     register_post_type('event', [
+        'capability_type' => 'event',
+        'map_meta_cap' => true,
         'public' => true,
         'has_archive' => true,
         'show_in_rest' => true,
@@ -27,6 +29,8 @@ function university_post_types(){
     //Campus Post type
     register_post_type('campus', [
         'public' => true,
+        'capability_type' => 'campus',
+        'map_meta_cap' => true,
         'has_archive' => true,
         'show_in_rest' => true,
         'supports' => [
