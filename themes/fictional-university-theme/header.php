@@ -12,7 +12,7 @@
         <h1 class="school-logo-text float-left">
           <a href="<?php echo site_url('') ?>"><strong>Fictional</strong> University</a>
         </h1>
-        <span class="js-search-trigger site-header__search-trigger"><i class="fa fa-search" aria-hidden="true"></i></span>
+        <a href="<?php echo esc_url(site_url('/search')); ?>" class="js-search-trigger site-header__search-trigger"><i class="fa fa-search" aria-hidden="true"></i></a>
         <i class="site-header__menu-trigger fa fa-bars" aria-hidden="true"></i>
         <div class="site-header__menu group">
           <nav class="main-navigation">
@@ -27,7 +27,7 @@
                 <a href="<?php echo get_post_type_archive_link('event'); ?>">Events</a>
               </li>
               <li <?php if(get_post_type() == 'campus') echo 'class="current-menu-item"'; ?>>
-              <a href="<?php echo get_post_type_archive_link('campus'); ?>">Campuses</a>
+                <a href="<?php echo get_post_type_archive_link('campus'); ?>">Campuses</a>
               </li>
               <li <?php if(get_post_type() == 'post') echo 'class="current-menu-item"'; ?>>
                 <a href="<?php echo site_url('/blog') ?>">Blog</a>
@@ -37,9 +37,9 @@
           <div class="site-header__util">
             <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
             <a href="#" class="btn btn--small btn--dark-orange float-left">Sign Up</a>
-            <span class="search-trigger js-search-trigger">
+            <a href="<?php echo esc_url(site_url('/search')); ?>" class="search-trigger js-search-trigger">
               <i class="fa fa-search" aria-hidden="true"></i>
-            </span>
+            </a>
           </div>
         </div>
       </div>
