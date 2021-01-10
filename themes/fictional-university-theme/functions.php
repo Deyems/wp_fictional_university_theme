@@ -73,10 +73,16 @@ function add_author_name_to_json(){
     return get_the_author();
 }
 
+function add_note_count_to_json(){
+    return count_user_posts(get_current_user_id(), 'note');
+}
+
 function university_custom_rest(){
     register_rest_field('post', 'author_name', [
         'get_callback' => 'add_author_name_to_json',
-        'update_callback' => 'update_author_name_in_json',
+    ]);
+    register_rest_field('note', 'user_note_count', [
+        'get_callback' => 'add_note_count_to_json',
     ]);
 }
 
@@ -166,3 +172,20 @@ function my_login_logo_url_title() {
     return get_bloginfo('name');
 }
 add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+//Force Note Posts to Be Private
+add_filter('wp_insert_post_data', 'make_note_private', 10, 2);
+
+function make_note_private($data, $postarr){
+    if($data['post_type'] == 'note'){
+        if(count_user_posts(get_current_user_id(),'note') > 3 && !$postarr['ID']){
+            die('You have reached your limit');
+        }
+        $data['post_content'] = sanitize_textarea_field($data['post_content']);
+        $data['post_title'] = sanitize_text_field($data['post_title']);
+    }
+    if($data['post_type'] == 'note' && $data['post_status'] != 'trash'){
+        $data['post_status'] = "private";
+    }
+    return $data;
+}
