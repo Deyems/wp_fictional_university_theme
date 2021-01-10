@@ -70,7 +70,7 @@ function university_post_types(){
         'menu_icon' => 'dashicons-edit-large',
     ]);
     
-    //Register Progessor Post type
+    //Register Professor Post type
     register_post_type('professor', [
         'public' => true,
         'show_in_rest' => true,
@@ -84,7 +84,22 @@ function university_post_types(){
         ],
         'menu_icon' => 'dashicons-welcome-learn-more',
     ]);
-
+    
+    //Register NOTES Post type
+    register_post_type('note', [
+        'public' => false,
+        'show_in_rest' => true,
+        'supports' => ['editor', 'title'],
+        'show_ui' => true,
+        'labels' => [
+            'name' => 'Notes',
+            'add_new_item' => 'Add New Note',
+            'edit_item' => 'Edit Note',
+            'all_items' => 'All Notes',
+            'singular_name' => 'Note',
+        ],
+        'menu_icon' => 'dashicons-welcome-write-blog',
+    ]);
 }
 
 add_action('init', 'university_post_types');
