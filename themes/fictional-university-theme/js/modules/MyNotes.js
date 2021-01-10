@@ -13,7 +13,7 @@ class MyNotes{
     
     //Methods will go here
 
-    createNote(e){
+    createNote(){
         // let thisNote = $(e.target).parents("div");
         let newPost = {
             'title': $(".new-note-title").val(),
@@ -40,10 +40,12 @@ class MyNotes{
                     </textarea>
                     <span class="update-note btn btn--blue btn--small"><i class="fa fa-arrow-right" aria-hidden="true"></i> Update</span>
                 </li>`).prependTo("#my-notes").hide().slideDown();
-                // $('<li>Lorem Data here</li>').prependTo("#my-notes").hide().slideDown();
                 console.log(response);
             },
             error: (response) => {
+                if(response.responseText == "\nYou have reached your limit"){
+                    $(".note-limit-message").addClass("active");
+                }
                 console.log(response);
             }
         });
@@ -83,6 +85,9 @@ class MyNotes{
             success: (response) => {
                 thisNote.slideUp();
                 console.log(response);
+                if(response.user_note_count <= 4){
+                    $(".note-limit-message").removeClass("active");
+                }
             },
             error: (response) => {
                 console.log('Sorry');
