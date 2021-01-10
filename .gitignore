@@ -8,4 +8,5 @@ uploads
 vendor
 .env
 googlekey
+mu-plugins/local-by-flywheel-live-link-helper.php
 #themes/fictional-university-theme/node_modules/
