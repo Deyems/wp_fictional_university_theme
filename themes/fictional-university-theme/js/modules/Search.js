@@ -25,7 +25,7 @@ class Search{
         this.searchField.on("keyup", this.searchDB.bind(this));
     }
 
-    //Methods
+    //Methods 
     searchDB(){
         if(this.previousVal !== this.searchField.val()){
             clearTimeout(this.typingTimer);
