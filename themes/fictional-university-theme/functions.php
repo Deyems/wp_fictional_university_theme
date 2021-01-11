@@ -1,5 +1,6 @@
 <?php
 require get_theme_file_path('inc/search-route.php');
+require get_theme_file_path('inc/like-route.php');
 
 $filepath = dirname(dirname(dirname(__DIR__))).'/wp-config.php';
 
