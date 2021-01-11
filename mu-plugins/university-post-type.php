@@ -102,6 +102,21 @@ function university_post_types(){
         ],
         'menu_icon' => 'dashicons-welcome-write-blog',
     ]);
+
+    //Register LIKE Post type
+    register_post_type('like', [
+        'public' => false,
+        'supports' => ['title'],
+        'show_ui' => true,
+        'labels' => [
+            'name' => 'Likes',
+            'add_new_item' => 'Add New Like',
+            'edit_item' => 'Edit Like',
+            'all_items' => 'All Likes',
+            'singular_name' => 'Like',
+        ],
+        'menu_icon' => 'dashicons-heart',
+    ]);
 }
 
 add_action('init', 'university_post_types');
