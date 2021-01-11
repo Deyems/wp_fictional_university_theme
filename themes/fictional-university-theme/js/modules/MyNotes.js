@@ -12,9 +12,7 @@ class MyNotes{
     }
     
     //Methods will go here
-
     createNote(){
-        // let thisNote = $(e.target).parents("div");
         let newPost = {
             'title': $(".new-note-title").val(),
             'content': $(".new-note-body").val(),
